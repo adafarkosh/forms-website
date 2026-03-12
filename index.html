@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="styles/css.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client brief for 2D / 3D art commission</title>
+    <link rel="icon" type="image/x-icon" href="images/logo.png">
+</head>
+
+<body>
+
+
+    <div class="menu">
+
+        <ul>
+            <li><a href="about.html">about</a></li>
+            <li><a href="portfolio.html">portfolio</a></li>
+            <li><img class="logoimage" src="images/logo.png"></li>
+            <li><a href="index.html" class="active">client brief</a></li>
+            <li><a href="pages/contact.html">contact</a></li>
+        </ul>
+
+    </div>
+    <div class="background">
+        <div class="text-block">
+            <h1>Client brief for 2D / 3D art commission</h1>
+            <form action="pages/output.html">
+
+                <p id="red-comments">* Required fields</p>
+
+                <label for="client-name-input">Your name:<span style="color:red;"><i>*</i></span></label>
+                <!-- //Span is a children, means nothing. In css I didn't want to make the whole field red etc, so it's the easiest way I found. -->
+                <br>
+                <input type="text" id="client-name-input" name="client-name" required>
+                <br><br>
+
+                <label for="email-input">Your email adress:<span style="color:red;"><i>*</i></span></label>
+                <br>
+                <input type="text" id="email-input" name="email" required>
+                <br><br>
+
+                <label for="project-title-input">Project title:</label>
+                <br>
+                <input type="text" id="project-title-input" name="project-title">
+                <br><br>
+
+                <p>Type of work needed:<span style="color:red;"><i>*</i></span></p>
+
+                <input type="radio" id="illustration-radio" name="work-type" value="2D illustration">
+                <label for="illustration-radio">2D illustration</label>
+                <br>
+
+                <input type="radio" id="model-radio" name="work-type" value="3D model">
+                <label for="model-radio">3D model</label>
+                <br>
+
+                <input type="radio" id="environment-radio" name="work-type" value="3D environment">
+                <label for="environment-radio">3D environment</label>
+                <br>
+
+                <input type="radio" id="character-radio" name="work-type" value="Character design">
+                <label for="character-radio">Character design</label>
+                <br><br>
+
+                <p>Deliverables needed:</p>
+
+                <input type="checkbox" id="sketches-check" name="deliverables" value="Sketches">
+                <label for="sketches-check">Sketches</label>
+                <br>
+
+                <input type="checkbox" id="render-check" name="deliverables" value="Final render">
+                <label for="render-check">Final render</label>
+                <br>
+
+                <input type="checkbox" id="source-files-check" name="deliverables" value="Source files">
+                <label for="source-files-check">Source files</label>
+                <br>
+
+                <input type="checkbox" id="textured-check" name="deliverables" value="Textured version">
+                <label for="textured-check">Textured version</label>
+                <br><br>
+
+                <label for="style-select">Style choice:</label>
+                <br>
+                <select id="style-select" name="style-choice">
+                    <option value="Realistic">Realistic</option>
+                    <option value="Horror gothic">Horror gothic</option>
+                    <option value="Cute / cosy">Cute / cosy</option>
+                    <option value="Sci-fi">Sci-fi</option>
+                    <option value="Stylised">Other</option>
+                </select>
+                <br><br>
+
+                <label for="colour-input">Preferred main colour:</label>
+                <br>
+                <input type="color" id="colour-input" name="colour">
+                <br><br>
+
+                <label for="budget-range">Budget level <span id="budget-range-value"></span></label>
+                <br>
+                <input type="range" id="budget-range" name="budget-range" min="50" max="5000" value="50">
+                <br><br>
+
+                <!-- ART DETAILS -->
+                <label for="asset-number-input">Number of assets</label>
+                <br>
+                <input type="number" id="asset-number-input" name="asset-number" min="1">
+                <br><br>
+
+                <label for="reference-file">Upload references</label>
+                <br>
+                <input type="file" id="reference-file" name="reference-file">
+                <br><br>
+
+                <!-- ART DETAILS 2 -->
+                <label for="project-description-input">Project description</label>
+                <br>
+                <textarea id="project-description-input" name="project-description" oninput="limitDescription()"></textarea>
+                <p id="red-comments"><small>*NOTE: Can't more than 1000 symbols</small></p>
+
+                <label for="deadline-input">Ideal deadline:<span style="color:red;"><i>*</i></span></label>
+                <br>
+                <input type="date" id="deadline-input" name="deadline" required>
+
+                <p id="red-comments"><small>*NOTE: Can't be earlier than 5 days</small></p>
+                <br>
+
+                <input type="submit" value="Generate Brief">
+                <!-- <input type="button" value="Generate Brief" onclick="submitBrief()"> - Used for Debug in JS file to check Console directly on the page. -->
+            </form>
+
+        </div>
+    </div>
+
+
+    </div>
+
+    <script src="code/code.js"></script>
+</body>

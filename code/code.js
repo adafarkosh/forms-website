@@ -70,6 +70,7 @@ function submitBrief() {
     /// STYLE SELECT
     let styleField = document.querySelector("#style-select");
     let styleChoice = styleField.value;
+    localStorage.setItem("styleChoice", styleChoice);
 
     /// COLOUR
     let colourField = document.querySelector("#colour-input");
@@ -97,29 +98,6 @@ function submitBrief() {
     // let fileURL = URL.createObjectURL(file); // create URL = adress for that file
     // let villainImage = document.querySelector("img"); ///* NO # IN THE NAME HERE
     // villainImage.src = fileURL;
-
-    /// UPLOUD IMAGE -- technique from THE BOOK https://eloquentjavascript.net/18_http.html
-    let fileInput = document.querySelector("#reference-file"); //get the file input
-
-    if (fileInput.files.length > 0) {
-        let file = fileInput.files[0]; // get the first file uplouded (they are added to the array = list)
-        referenceName = file.name;
-        localStorage.setItem("referenceName", referenceName);
-
-        let reader = new FileReader(); // create a file reader
-
-        reader.addEventListener("load", function () {
-            localStorage.setItem("referenceImage", reader.result); // save image data for the next page
-            window.location.href = "pages/output.html"; // go to output page after image is ready
-        });
-
-        reader.readAsDataURL(file); // read image as data URL
-    }
-    else {
-        localStorage.setItem("referenceName", "");
-        localStorage.setItem("referenceImage", "");
-        window.location.href = "pages/output.html";
-    }
 
     /// PROJECT DESCRIPTION
     let projectDescriptionField = document.querySelector("#project-description-input");
@@ -151,9 +129,9 @@ function submitBrief() {
         }
 
         deadline = year + "-" + month + "-" + day;
-
-        localStorage.setItem("deadline", deadline);
     }
+
+    localStorage.setItem("deadline", deadline); //Outside "IF" because we want to save deadline in any case, not just when "if"
 
 }
 
@@ -191,6 +169,30 @@ if (deadlineField) {
 
     deadlineField.min = year + "-" + month + "-" + day;
 }
+
+    /// UPLOUD IMAGE -- technique from THE BOOK https://eloquentjavascript.net/18_http.html
+    /* */
+    let fileInput = document.querySelector("#reference-file"); //get the file input
+
+    if (fileInput.files.length > 0) {
+        let file = fileInput.files[0]; // get the first file uplouded (they are added to the array = list)
+        referenceName = file.name;
+        localStorage.setItem("referenceName", referenceName);
+
+        let reader = new FileReader(); // create a file reader
+
+        reader.addEventListener("load", function () {
+            localStorage.setItem("referenceImage", reader.result); // save image data for the next page
+            window.location.href = "pages/output.html"; // go to output page after image is ready
+        });
+
+        reader.readAsDataURL(file); // read image as data URL
+    }
+    else {
+        localStorage.setItem("referenceName", "");
+        localStorage.setItem("referenceImage", "");
+        window.location.href = "pages/output.html";
+    }
 
 ///* OUTPUT
 function loadBrief() {
@@ -287,7 +289,7 @@ if (form) {
     });
 }
 
-function limitDescription() { 
+function limitDescription() {
     /// NO MORE THAN 1000 SYMBOLS
 
     let projectDescriptionField = document.querySelector("#project-description-input");
